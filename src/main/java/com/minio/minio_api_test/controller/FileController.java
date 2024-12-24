@@ -66,9 +66,10 @@ public class FileController {
 
         try {
             // 버킷, 오브젝트 존재 확인
-            boolean findObject = minioService.bucketOrObjectExists(bucketName, objectName);
-            if (!findObject) { // 버킷이 없거나 해당 버킷 내에 오브젝트가 없을 시 404
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponseDto(false, "Bucket '" + bucketName + "' does not exist."));
+            Integer findObjectCode = minioService.bucketOrObjectExists(bucketName, objectName);
+            if (findObjectCode != 0) { // 버킷이 없거나 해당 버킷 내에 오브젝트가 없을 시 404
+                String message = findObjectCode == 1 ? "There is no bucket '" + bucketName + "'." : "In bucket '" + bucketName + "', object '" + objectName + "' does not exist.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponseDto(false, message));
             }
 
 

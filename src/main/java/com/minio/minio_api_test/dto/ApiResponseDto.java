@@ -1,8 +1,10 @@
 package com.minio.minio_api_test.dto;
 
 import lombok.Data;
+import lombok.Setter;
 
 @Data
+@Setter
 public class ApiResponseDto {
     private boolean success;
     private Object data;

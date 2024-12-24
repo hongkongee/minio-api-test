@@ -1,5 +1,6 @@
 package com.minio.minio_api_test.service;
 
+import com.minio.minio_api_test.dto.ApiResponseDto;
 import io.minio.*;
 import io.minio.errors.*;
 import lombok.extern.slf4j.Slf4j;
@@ -93,9 +94,9 @@ public class MinioService {
     }
 
 
-    public boolean bucketOrObjectExists(String bucketName, String objectName) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+    public Integer bucketOrObjectExists(String bucketName, String objectName) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
         if (!minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build())) { // 버킷이 존재하지 않을 시
-            return false;
+            return 1;
         } else {
             try {
                 minioClient.statObject(
@@ -104,10 +105,12 @@ public class MinioService {
                                 .object(objectName)
                                 .build()
                 );
-                return true; // 버킷 안에 오브젝트가 존재할 시
+                return 0; // 버킷 안에 오브젝트가 존재할 시
+
             } catch (ErrorResponseException e) {
                 if (e.errorResponse().code().equals("NoSuchKey")) { // 버킷 안에 오브젝트가 존재하지 않을 시
-                    return false;
+
+                    return 2;
                 }
                 throw new RuntimeException("Error checking object existence: " + e.getMessage());
 
