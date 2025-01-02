@@ -5,7 +5,72 @@
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
+build/
+gradle/
+.gradle/
+
+# Gradle 빌드 파일들
+
+*.gradle
+gradle/wrapper/
+
+# IntelliJ IDEA 관련 파일들
+.idea/
+
+# VSCode 관련 파일들
+.vscode/
+
+# OS 생성 파일들
+*.DS_Store
+
+# 기타 로그 파일들
+*.log
+
+# IDE 파일들
+*.iml
+
+# 실행 파일 및 빌드된 아카이브 파일들
+*.jar
+*.war
+*.ear
+*.class
+
+# 백업 및 임시 파일들
+*.bak
+*.swp
+
 *.yml
+*.lock
+
+# 운영체제 관련 파일
+.DS_Store
+Thumbs.db
+
+# IDE 관련 파일 (예: IntelliJ, VSCode, Eclipse 등)
+.idea/
+.vscode/
+*.iml
+
+# 빌드 파일
+target/
+build/
+
+# 로그 파일
+*.log
+
+# OS 관련 설정 파일
+*.swp
+*.swo
+
+# 의존성 파일 (예: Node.js, Python, Java 등)
+node_modules/
+*.pyc
+*.pyo
+*.class
+
+# 기타 임시 파일
+*.bak
+*.tmp
 
 # User-specific stuff
 .idea/**/workspace.xml
